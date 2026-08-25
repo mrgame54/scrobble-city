@@ -9,5 +9,5 @@ app.get('/api/test', (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-  console.log('Backend server is running on http://localhost:${PORT}');
+  console.log('Backend server is running on http://localhost:' + PORT);
 });
