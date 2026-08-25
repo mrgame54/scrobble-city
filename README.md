@@ -5,6 +5,7 @@ An interactive visualizer of your Scrobbles from last.fm
 ---
 ### 📦 Technologies
 * `Cross-Platform Web`
+* `Express`
 
 ---
 ### 🦄 Features
