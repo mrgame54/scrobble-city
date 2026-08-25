@@ -5,6 +5,7 @@ const genresRouter = require('./genres')
 const artistsRouter = require('./artists')
 const tracksRouter = require('./tracks')
 const app = express()
+require('dotenv').config()
 
 app.use(cors({
     origin: ['https://localhost:5000']
