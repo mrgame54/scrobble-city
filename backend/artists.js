@@ -8,6 +8,8 @@ if (!API_KEY) {
 
 //request all artists
 router.get('/', (req, res) => {
+    const username = req.session.username
+
     res.send('This is the artists page')
 })
 

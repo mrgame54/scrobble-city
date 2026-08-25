@@ -1,12 +1,14 @@
 const express = require('express')
 const router = express.Router()
 
-//user (with some testing lines)
+//get username
 router.post('/', (req, res) => {
-    const {name} = req.body
+    const { username } = req.body
 
-    console.log('New user: ', name)
-    res.json({message: 'Welcome ' + user + '!'})
+    req.session.username = username
+
+    console.log('New user: ', username)
+    res.json({message: 'Welcome ' + username + '!'})
 })
 
 module.exports = router
