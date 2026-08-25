@@ -1,10 +1,13 @@
 import './App.css'
+import Hud from './components/Hud'
 
 function App() {
   return (
-    <div>
-      <h1>Last.fm Visualizer</h1>
-      <p>Frontend is ready!</p>
+    <div className='app-wrapper'>
+        {/* the visulaizer will come here later*/}
+        <div className="background-placeholder" style={{ width: '100vw', height: '100vh', background: '#111' }}></div>
+
+        <Hud></Hud>
     </div>
   )
 }
