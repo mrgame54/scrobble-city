@@ -1,6 +1,8 @@
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Sky, PointerLockControls, Stars, Text } from '@react-three/drei';
-import PlayerMovement from './PlayerMovement'; 
+import { Canvas } from '@react-three/fiber'
+import { OrbitControls, Sky, PointerLockControls, Stars, Text } from '@react-three/drei'
+import PlayerMovement from './PlayerMovement'
+import CityGrid from './CityGrid'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
 
 
 export default function CityScene({ cameraMode }) {
@@ -12,19 +14,26 @@ export default function CityScene({ cameraMode }) {
         <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
         <ambientLight intensity={0.2} />
         <directionalLight position={[10, 10, 5]} intensity={0.5} />
+        <color attach="background" args={['#0a0a0a']} />
+        <fog attach="fog" args={['#0a0a0a', 10, 600]} />
 
         {/* floor */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]}>
           <planeGeometry args={[100, 100]} />
           <meshStandardMaterial color="#1a1a1a" />
         </mesh>
+        
+        <CityGrid></CityGrid>
+              <EffectComposer>
+                  <Bloom luminanceThreshold={0.15} luminanceSmoothing={0.9} intensity={1.5} />
+              </EffectComposer>
 
-        {/* default skyscraper */}
+        {/* default skyscraper 
         <mesh position={[0, 2, 0]}>
           <boxGeometry args={[2, 5, 2]} />
           <meshStandardMaterial color="#d51007" />
 
-          {/* attached to skyscraper */}
+          
             <Text
             position={[0, 1.5, 1.01]} 
             fontSize={0.5}
@@ -36,7 +45,7 @@ export default function CityScene({ cameraMode }) {
           >
             Alper Natlus
           </Text>
-        </mesh>
+        </mesh> */}
 
         {/* camera controls */}
         <OrbitControls 
