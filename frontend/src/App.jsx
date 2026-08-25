@@ -1,13 +1,19 @@
+import { useState } from 'react'
 import './App.css'
 import Hud from './components/Hud'
+import CityScene from './components/CityScene'
 
 function App() {
+  // default Camera Mode is Orbit
+  const [cameraMode, setCameraMode] = useState('orbit')
+  
   return (
     <div className='app-wrapper'>
-        {/* the visulaizer will come here later*/}
-        <div className="background-placeholder" style={{ width: '100vw', height: '100vh', background: '#111' }}></div>
+        {/*3d world*/}
+        <CityScene cameraMode={cameraMode}></CityScene>
 
-        <Hud></Hud>
+        {/*hud*/}
+        <Hud cameraMode={cameraMode} setCameraMode={setCameraMode}></Hud>
     </div>
   )
 }
