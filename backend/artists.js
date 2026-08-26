@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const API_KEY = process.env.LASTFM_API_KEY
-const USERNAME = req.session.username
+//const USERNAME = req.session.username
+const USERNAME = 'MrGame54'
 
 //check for API Key
 if (!API_KEY) {
@@ -35,7 +36,7 @@ async function fetchUserArtists(username) {
             const currentArtists = data.topartists.artist
             artists = artists.concat(currentArtists)
 
-            const attributes = data.topartists['@attr'] //todo 
+            const attributes = data.topartists['@attr'] 
             totalPages = parseInt(attributes.totalPages, 10)
 
             console.log('Fetched page ' + currentPage + ' of ' + totalPages + '(' + currentArtists.length + ' artists)')
