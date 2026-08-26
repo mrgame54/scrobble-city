@@ -9,7 +9,7 @@ const app = express()
 
 //whitelist
 app.use(cors({
-    origin: ['https://localhost:5000']
+    origin: ['https://localhost:5173']
 }))
 
 app.use(express.json())
@@ -26,6 +26,6 @@ app.get('/', (req, res) => {
 })
 
 //start server
-app.listen(5000, () => {
+app.listen(5173, () => {
     console.log('Server is running')
 })
