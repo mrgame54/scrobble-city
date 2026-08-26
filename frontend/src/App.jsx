@@ -4,14 +4,16 @@ import Hud from './components/Hud'
 import CityScene from './components/CityScene'
 
 function App() {
+  // const zum speichern
+  const [searchConfig, setSearchConfig] = useState({ username: '', type: 'tracks' })
   // default Camera Mode is Orbit
   const [cameraMode, setCameraMode] = useState('orbit')
-  // const zum speichern
   
+
   return (
     <div className='app-wrapper'>
         {/*3d world*/}
-        <CityScene cameraMode={cameraMode}></CityScene>
+        <CityScene cameraMode={cameraMode} searchConfig={searchConfig}></CityScene>
 
         {/*hud*/}
         <Hud cameraMode={cameraMode} setCameraMode={setCameraMode}></Hud>

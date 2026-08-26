@@ -5,7 +5,7 @@ import CityGrid from './CityGrid'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 
 
-export default function CityScene({ cameraMode }) {
+export default function CityScene({ cameraMode, searchConfig }) {
   return (
     <div style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0, zIndex: -1 }}>
       <Canvas camera={{ position: [0, 5, 10], fov: 60 }}>
@@ -23,7 +23,7 @@ export default function CityScene({ cameraMode }) {
           <meshStandardMaterial color="#1a1a1a" />
         </mesh>
         
-        <CityGrid></CityGrid>
+        <CityGrid searchConfig={searchConfig}></CityGrid>
               <EffectComposer>
                   <Bloom luminanceThreshold={0.15} luminanceSmoothing={0.9} intensity={1.5} />
               </EffectComposer>

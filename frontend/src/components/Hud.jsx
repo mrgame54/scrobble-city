@@ -2,14 +2,26 @@ import { useState } from 'react'
 import './Hud.css'
 import { fakeScrobbleData } from '../dummydata.js'
 
-export default function Hud({ cameraMode, setCameraMode }) {
-    const [username, setUsername] = useState('');
-    const [data, setData] = useState(null);
+export default function Hud({ cameraMode, setCameraMode, setSearchConfig}) {
+    const [localUser, setLocalUser] = useState('')
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        setData(fakeScrobbleData);
-    };
+    const handleSearch = async (e) => {
+        e.preventDefault()
+        try{
+            // set username
+            await fetch ('http://localhost:5000/user', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
+                body: JSON.stringify({ username: localUser })
+            })
+            // load tracks
+            setSearchConfig({ username: localUser, type: 'tracks' })
+        }
+        catch (err){
+            console.error("Failed to find user :(", err)
+        }
+    }
 
     return (
         <div className="hud-container">
@@ -19,9 +31,21 @@ export default function Hud({ cameraMode, setCameraMode }) {
                     <input
                         type="text"
                         placeholder="Enter Last.fm username..."
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={localUser}
+                        onChange={(e) => setLocalUser(e.target.value)}
                     />
+                    
+                    {/* slider for all data types 
+                    <select
+                        value={localType}
+                        onChange={(e) => setLocalType(e.target.value)}
+                        style={{ width: '100%', padding: '10px', marginBottom: '10px', background: '#333', color: 'white', borderRadius: '6px' }}
+                    >
+                        <option value="tracks">Tracks</option>
+                        <option value="artists">Artists</option>
+                        <option value="artists">Tags</option>
+                    </select> */ }
+                    
                     <button type="submit">Visualize</button>
                 </form>
 
@@ -35,21 +59,6 @@ export default function Hud({ cameraMode, setCameraMode }) {
                     Switch to {cameraMode === 'orbit' ? 'Walk Mode' : 'Orbit Mode'}
                 </button>
             </div>
-            {/*  show stats if data is loaded */}
-            {data && (
-                <div className="hud-panel stats-panel">
-                    <img src={data.nowPlaying.imageUrl} alt="Album Art" className="album-art" />
-                    <div className="track-info">
-                        <p className="label">NOW PLAYING</p>
-                        <h3>{data.nowPlaying.track}</h3>
-                        <p>{data.nowPlaying.artist}</p>
-                    </div>
-                    <div className="user-stats">
-                        <p>User: <strong>{data.user.name}</strong></p>
-                        <p>Total Scrobbles: <strong>{data.user.totalScrobbles.toLocaleString()}</strong></p>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }
