@@ -6,6 +6,7 @@ import CityScene from './components/CityScene'
 function App() {
   // default Camera Mode is Orbit
   const [cameraMode, setCameraMode] = useState('orbit')
+  // const zum speichern
   
   return (
     <div className='app-wrapper'>

@@ -1,50 +1,51 @@
-import { useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Instances, Instance } from '@react-three/drei'
 
 export default function CityGrid() {
-  const gridSize = 20; // 20x20 grid = 400 buildings
-  const spacing = 4; // Space between buildings
+  const [tracks, setTracks] = useState([]);
+
+  useEffect(() => {
+    // fetch tjark
+    fetch('http://localhost:5000/tracks')
+      .then(res => res.json())
+      .then(data => {
+        console.log("Loaded Tracks:", data)
+        setTracks(data)
+      })
+      .catch(err => console.error("Error fetching tracks:", err))
+  }, [])
+
+  const spacing = 4;
+  const gridSize = Math.ceil(Math.sqrt(tracks.length))
 
   const buildings = useMemo(() => {
-    const temp = [];
-    
-    for (let x = 0; x < gridSize; x++) {
-      for (let z = 0; z < gridSize; z++) {
-        // leave a 2x2 empty clearing in the center for the player to spawn
-        if (Math.abs(x - gridSize / 2) < 2 && Math.abs(z - gridSize / 2) < 2) continue;
+    return tracks.map((track, index) => {
+      const playCount = parseInt(track.playcount, 10) || 1
+      const height = Math.max(playCount / 10, 1); 
 
-        // generate a random height based on imaginary scrobble counts
-        const height = Math.random() * 15 + 3; 
+      const x = (index % gridSize) - gridSize / 2;
+      const z = Math.floor(index / gridSize) - gridSize / 2
 
-        temp.push({
-          position: [
-            (x - gridSize / 2) * spacing, 
-            height / 2, 
-            (z - gridSize / 2) * spacing
-          ],
-          scale: [2, height, 2],
-          color: Math.random() > 0.9 ? "#d51007" : "#dbd7d7" 
-        });
-      }
-    }
-    return temp;
-  }, []);
+      return {
+        position: [x * spacing, height / 2, z * spacing],
+        scale: [2, height, 2],
+        color: "#d51007" 
+      };
+    });
+  }, [tracks, gridSize]);
+
+  // track has to wait
+  if (tracks.length === 0) {
+    return null; 
+  }
 
   return (
     <Instances limit={buildings.length}>
-      {/*define shape material once */}
       <boxGeometry />
       <meshStandardMaterial />
-      
-      {/* stamp it hundreds of times */}
       {buildings.map((data, i) => (
-        <Instance 
-          key={i} 
-          position={data.position} 
-          scale={data.scale} 
-          color={data.color} 
-        />
+        <Instance key={i} position={data.position} scale={data.scale} color={data.color} />
       ))}
     </Instances>
-  );
+  )
 }
