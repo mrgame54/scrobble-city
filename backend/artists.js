@@ -15,7 +15,7 @@ async function fetchUserArtists(username) {
     let totalPages = 1
     const limit = 1000
 
-    console.json('fetching all artists for ' + username)
+    console.log('fetching all artists for ' + username)
 
     try {
         while (currentPage <= totalPages) {
@@ -54,8 +54,14 @@ async function fetchUserArtists(username) {
 }
 
 //request all artists
-router.get('/', (req, res) => {
-    res.json[fetchUserArtists(USERNAME)]
+router.get('/', async (req, res) => {
+    try {
+        const fetchedArtists = await fetchUserArtists(USERNAME)
+        res.json(fetchedArtists)
+    } catch (error) {
+        console.error('Failed to fetch from Last.fm: ' + error)
+        res.status(500).json({ error: 'Failed to fetch artists' })
+    }
 })
 
 module.exports = router
