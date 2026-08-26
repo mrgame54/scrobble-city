@@ -19,7 +19,7 @@ export default function CityScene({ cameraMode, searchConfig }) {
 
         {/* floor */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]}>
-          <planeGeometry args={[100, 100]} />
+          <planeGeometry args={[300, 300]} />
           <meshStandardMaterial color="#1a1a1a" />
         </mesh>
         
@@ -63,5 +63,5 @@ export default function CityScene({ cameraMode, searchConfig }) {
 
       </Canvas>
     </div>
-  );
+  )
 }

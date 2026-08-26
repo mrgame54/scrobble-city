@@ -4,6 +4,7 @@ import { fakeScrobbleData } from '../dummydata.js'
 
 export default function Hud({ cameraMode, setCameraMode, setSearchConfig}) {
     const [localUser, setLocalUser] = useState('')
+    const [localType, setLocalType] = useState('tracks')
 
     const handleSearch = async (e) => {
         e.preventDefault()
@@ -16,7 +17,7 @@ export default function Hud({ cameraMode, setCameraMode, setSearchConfig}) {
                 body: JSON.stringify({ username: localUser })
             })
             // load tracks
-            setSearchConfig({ username: localUser, type: 'tracks' })
+            setSearchConfig({ username: localUser, type: localType })
         }
         catch (err){
             console.error("Failed to find user :(", err)
@@ -35,7 +36,7 @@ export default function Hud({ cameraMode, setCameraMode, setSearchConfig}) {
                         onChange={(e) => setLocalUser(e.target.value)}
                     />
                     
-                    {/* slider for all data types 
+                    {/* slider for all data types */}
                     <select
                         value={localType}
                         onChange={(e) => setLocalType(e.target.value)}
@@ -43,8 +44,8 @@ export default function Hud({ cameraMode, setCameraMode, setSearchConfig}) {
                     >
                         <option value="tracks">Tracks</option>
                         <option value="artists">Artists</option>
-                        <option value="artists">Tags</option>
-                    </select> */ }
+                        <option value="tags">Tags</option>
+                    </select> 
                     
                     <button type="submit">Visualize</button>
                 </form>
@@ -60,5 +61,5 @@ export default function Hud({ cameraMode, setCameraMode, setSearchConfig}) {
                 </button>
             </div>
         </div>
-    );
+    )
 }
