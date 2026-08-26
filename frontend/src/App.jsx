@@ -8,15 +8,16 @@ function App() {
   const [cameraMode, setCameraMode] = useState('orbit')
   // const zum speichern
   const [searchConfig, setSearchConfig] = useState({ username: '', type: 'tracks' })
-  
+  // user info
+  const [userInfo, setUserInfo] = useState(null)
 
   return (
     <div className='app-wrapper'>
         {/*3d world*/}
-        <CityScene cameraMode={cameraMode} searchConfig={searchConfig}></CityScene>
+        <CityScene cameraMode={cameraMode} searchConfig={searchConfig} userInfo={userInfo}></CityScene>
 
         {/*hud*/}
-        <Hud cameraMode={cameraMode} setCameraMode={setCameraMode} setSearchConfig={setSearchConfig}></Hud>
+        <Hud cameraMode={cameraMode} setCameraMode={setCameraMode} setSearchConfig={setSearchConfig} setUserInfo={setUserInfo} userInfo={userInfo}></Hud>
     </div>
   )
 }

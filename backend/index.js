@@ -51,7 +51,7 @@ async function fetchUserInfo(username) {
             throw new Error('Last.fm API Error: ' + data.message)
         }
 
-        console.log('Successfully fetched all information)')
+        console.log('Successfully fetched all information')
 
         return [data.user]
 

@@ -5,7 +5,12 @@ import CityGrid from './CityGrid'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 
 
-export default function CityScene({ cameraMode, searchConfig }) {
+export default function CityScene({ cameraMode, searchConfig, userInfo }) {
+
+  // dynmaic floor math 
+  const playcount = userInfo ? parseInt(userInfo.playcount, 10) : 0;
+  const floorSize = Math.max(100, Math.ceil(Math.sqrt(playcount) * 5));
+
   return (
     <div style={{ width: '100vw', height: '100vh', position: 'absolute', top: 0, left: 0, zIndex: -1 }}>
       <Canvas camera={{ position: [0, 5, 10], fov: 60 }}>
@@ -19,9 +24,23 @@ export default function CityScene({ cameraMode, searchConfig }) {
 
         {/* floor */}
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, 0]}>
-          <planeGeometry args={[300, 300]} />
+          <planeGeometry args={[floorSize, floorSize]} />
           <meshStandardMaterial color="#1a1a1a" />
         </mesh>
+
+        {/* bottom right scrobble info*/}
+        {userInfo && (
+          <Text
+            position={[floorSize / 2 - 5, -0.4, floorSize / 2 - 5]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            fontSize={4}
+            color="white"
+            anchorX="right"
+            anchorY="bottom"
+          >
+            Size of City: {userInfo.playcount} Scrobbles
+          </Text>
+        )}
         
         <CityGrid searchConfig={searchConfig}></CityGrid>
               <EffectComposer>
