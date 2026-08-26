@@ -14,7 +14,8 @@ const allowedOrigins = [
 
 //whitelist
 app.use(cors({
-    origin: allowedOrigins
+    origin: allowedOrigins,
+    credentials: true
 }))
 
 app.use(express.json())
@@ -39,7 +40,7 @@ app.get('/', (req, res) => {
 
 //get username
 app.post('/user', (req, res) => {
-    const username = req.bodyusername
+    const username = req.body.username
     req.session.username = username
     res.send('Welcome!')
 })
