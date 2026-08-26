@@ -1,0 +1,72 @@
+.hud-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* Lets clicks pass through to the visualizer behind it */
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  color: white;
+}
+
+.hud-panel {
+  pointer-events: auto; /* Re-enables clicks for the HUD panels */
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.control-panel {
+  height: fit-content;
+  width: 300px;
+}
+
+.control-panel input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 6px;
+}
+
+.control-panel button {
+  width: 100%;
+  padding: 10px;
+  background: #d51007; /* Last.fm Red */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.stats-panel {
+  height: fit-content;
+  width: 250px;
+  text-align: right;
+}
+
+.album-art {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: #aaa;
+  letter-spacing: 1px;
+}
+
+.track-info h3 {
+  margin: 5px 0;
+}
