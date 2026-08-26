@@ -16,7 +16,7 @@ async function fetchUserArtists(username) {
     let totalPages = 1
     const limit = 1000
 
-    console.log('fetching all artists for ' + username)
+    console.log('Fetching all artists for ' + username)
 
     try {
         while (currentPage <= totalPages) {

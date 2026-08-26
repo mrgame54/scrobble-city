@@ -16,7 +16,7 @@ async function fetchUserTracks(username) {
     let totalPages = 1
     const limit = 1000
 
-    console.log('fetching all tracks for ' + username)
+    console.log('Fetching all tracks for ' + username)
 
     try {
         while (currentPage <= totalPages) {
