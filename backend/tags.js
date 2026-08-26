@@ -1,8 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const API_KEY = process.env.LASTFM_API_KEY
-//const USERNAME = req.session.username
-const USERNAME = 'MrGame54'
 
 //check for API Key
 if (!API_KEY) {
@@ -43,8 +41,10 @@ async function fetchUserTags(username) {
 
 //request all tags
 router.get('/', async (req, res) => {
+    const username = req.session.username || 'Mrgame54'
+
     try {
-        const fetchedTags = await fetchUserTags(USERNAME)
+        const fetchedTags = await fetchUserTags(username)
         res.json(fetchedTags)
     } catch (error) {
         console.error('Failed to fetch from Last.fm: ' + error)

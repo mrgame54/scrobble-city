@@ -1,7 +1,7 @@
 require('dotenv').config()
 const cors = require('cors')
 const express = require('express')
-const userRouter = require('./user')
+const session = require('express-session')
 const tagsRouter = require('./tags')
 const artistsRouter = require('./artists')
 const tracksRouter = require('./tracks')
@@ -14,8 +14,15 @@ app.use(cors({
 
 app.use(express.json())
 
+//session setup
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false}
+}))
+
 //routers
-app.use('/user', userRouter)
 app.use('/tags', tagsRouter)
 app.use('/artists', artistsRouter)
 app.use('/tracks', tracksRouter)
@@ -23,6 +30,13 @@ app.use('/tracks', tracksRouter)
 //main page
 app.get('/', (req, res) => {
     res.send('Welcome to Scrobble City')
+})
+
+//get username
+app.post('/user', (req, res) => {
+    const username = req.bodyusername
+    req.session.username = username
+    res.send('Welcome!')
 })
 
 //start server
