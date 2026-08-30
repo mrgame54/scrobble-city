@@ -1,7 +1,6 @@
 # scrobble-city
-A Single-Page-Application (SPA) designed for interactive visualization of last.fm user data. The frontend is implemented with React and the backend API uses Node.js as well as Express for data processing.
 ---
-An interactive visualizer of your Scrobbles from last.fm
+A Single-Page-Application (SPA) designed for interactive visualization of your last.fm Scrobbles. The frontend is implemented with React and the backend API uses Node.js as well as Express for data processing.
 
 ---
 ### 📦 Technologies
