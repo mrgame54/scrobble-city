@@ -24,6 +24,7 @@ git clone [https://github.com/mrgame54/scrobble-city.git](https://github.com/mrg
 cd scrobble-city
 ```
 2. Set Up the Backend
+
 Navigate to the backend directory and install the required dependencies:
 ```bash
    cd backend
@@ -39,6 +40,7 @@ Start the backend server (it runs on port 5000):
 node index.js
 ```
 3. Set Up the Frontend
+
 Open a new terminal window, navigate to the frontend directory, install the dependencies, and start the Vite development server:
 
 ```
