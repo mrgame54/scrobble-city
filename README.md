@@ -23,7 +23,8 @@ A Single-Page-Application (SPA) designed for interactive visualization of your l
 git clone [https://github.com/mrgame54/scrobble-city.git](https://github.com/mrgame54/scrobble-city.git)
 cd scrobble-city
 ```
-2. Set Up the Backend
+
+**2. Set Up the Backend**
 
 Navigate to the backend directory and install the required dependencies:
 ```bash
@@ -39,7 +40,8 @@ Start the backend server (it runs on port 5000):
 ```bash
 node index.js
 ```
-3. Set Up the Frontend
+
+**3. Set Up the Frontend**
 
 Open a new terminal window, navigate to the frontend directory, install the dependencies, and start the Vite development server:
 
@@ -49,7 +51,7 @@ npm install
 npm run dev
 ```
 
-4. Explore your City!
+**4. Explore your City!**
 Open your browser and navigate to http://localhost:5173. Enter a valid Last.fm username in the HUD, select your data type (Tracks, Artists, or Tags), and click Visualize to generate the City!!
 
 
